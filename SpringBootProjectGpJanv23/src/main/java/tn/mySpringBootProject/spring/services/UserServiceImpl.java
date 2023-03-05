@@ -1,23 +1,32 @@
 package tn.mySpringBootProject.spring.services;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import tn.mySpringBootProject.spring.entities.Filee;
+import tn.mySpringBootProject.spring.entities.Filess;
 import tn.mySpringBootProject.spring.entities.Role;
 import tn.mySpringBootProject.spring.entities.User;
 import tn.mySpringBootProject.spring.repository.IRoleRepository;
 import tn.mySpringBootProject.spring.repository.UserRepository;
 
 @Service
-public class UserService implements IUserService{
+public class UserServiceImpl implements IUserService{
 
 	@Autowired
 	UserRepository userRep;
 	@Autowired 
 	IRoleRepository roleRep;
 
+	@Autowired
+	FilessServiceImpl fileServ;
+	
+	@Autowired
+	FileeServiceImpl fileeServ;
 	
 	@Override
 	public User addUser(User user) {
@@ -137,6 +146,40 @@ public class UserService implements IUserService{
 	public List<User> getUsersByIdRole(Long idrole) {
 		// TODO Auto-generated method stub
 		return userRep.getUsersByIdRole(idrole);
+	}
+
+	@Override
+	public User addUserFile(MultipartFile file, Long iduser) throws IOException{
+		// TODO Auto-generated method stub
+		
+		User user = userRep.findById(iduser).get();
+		
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+file.getOriginalFilename());
+		
+		Filess fl=	fileServ.addFile(file);
+		
+		user.setFile(fl);
+		
+		return userRep.save(user);
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return userRep.findAll();
+	}
+
+	@Override
+	public User uploadUserFilee(MultipartFile file, Long iduser) throws IOException {
+		// TODO Auto-generated method stub
+		
+		User user = userRep.findById(iduser).get();
+		
+		Filee fl= fileeServ.addFile(file);
+		
+		user.setFilee(fl);
+		
+		return userRep.save(user);
 	}
 
 	

@@ -1,6 +1,9 @@
 package tn.mySpringBootProject.spring.services;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import tn.mySpringBootProject.spring.entities.User;
 
@@ -25,5 +28,13 @@ public interface IUserService {
 	public List<Long>findUsersByIdRole ();
 	public List<Long>findUsersByIdRole (Long idrole);
 	
-	List<User> getUsersByIdRole(Long idrole);
+	public List<User> getUsersByIdRole(Long idrole);
+	
+	public List<User> getAllUsers();
+	
+	public User addUserFile(MultipartFile file, Long iduser) throws IOException;
+	
+	
+	public User uploadUserFilee(MultipartFile file, Long iduser) throws IOException;
+	
 }
