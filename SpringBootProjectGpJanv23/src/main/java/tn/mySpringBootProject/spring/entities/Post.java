@@ -2,6 +2,7 @@ package tn.mySpringBootProject.spring.entities;
 
 
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,7 +27,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Post {
+public class Post implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +38,7 @@ public class Post {
 	@JsonFormat(shape =JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
 	private Timestamp created;
 	
+	@JsonIgnore
 	@ManyToOne
 	private User userp;
 

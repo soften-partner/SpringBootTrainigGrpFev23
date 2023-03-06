@@ -1,11 +1,15 @@
 package tn.mySpringBootProject.spring.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Filess {
+public class Filess implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +34,7 @@ public class Filess {
 	@Column(length = 420000)
 	private byte[] filesize;
 	
+	@JsonBackReference
 	@OneToOne(mappedBy ="file")
 	private User user;
 
