@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import tn.mySpringBootProject.spring.entities.Post;
 import tn.mySpringBootProject.spring.entities.User;
 
 public interface IUserService {
@@ -36,5 +37,7 @@ public interface IUserService {
 	
 	
 	public User uploadUserFilee(MultipartFile file, Long iduser) throws IOException;
+	
+	public List<Post> getPostByIdUser(Long iduser);
 	
 }

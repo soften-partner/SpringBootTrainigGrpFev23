@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import tn.mySpringBootProject.spring.entities.Filee;
 import tn.mySpringBootProject.spring.entities.Filess;
+import tn.mySpringBootProject.spring.entities.Post;
 import tn.mySpringBootProject.spring.entities.Role;
 import tn.mySpringBootProject.spring.entities.User;
 import tn.mySpringBootProject.spring.repository.IRoleRepository;
@@ -94,9 +95,6 @@ public class UserServiceImpl implements IUserService{
 		if(userRep.existsById(idUser))
 		{
 			userRep.deleteById(idUser);
-			
-		
-			
 			ch="user deleted successfuly !!";
 		}
 		else
@@ -180,6 +178,17 @@ public class UserServiceImpl implements IUserService{
 		user.setFilee(fl);
 		
 		return userRep.save(user);
+	}
+
+	@Override
+	public List<Post> getPostByIdUser(Long iduser) {
+		// TODO Auto-generated method stub
+		
+		User user = userRep.findById(iduser).get();
+		
+		return user.getListPost();
+		
+	
 	}
 
 	

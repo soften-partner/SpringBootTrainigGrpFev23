@@ -50,6 +50,7 @@ public class User implements Serializable {
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "userRole", joinColumns = @JoinColumn(name="idUser"), inverseJoinColumns = @JoinColumn(name="idrole"))
+	
 	private List<Role> listRole= new ArrayList<>(); 
 	
 	@JsonManagedReference

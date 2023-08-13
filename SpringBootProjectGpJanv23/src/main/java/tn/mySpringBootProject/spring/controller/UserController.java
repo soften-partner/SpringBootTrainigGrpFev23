@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import tn.mySpringBootProject.spring.entities.Post;
 import tn.mySpringBootProject.spring.entities.User;
 import tn.mySpringBootProject.spring.services.UserServiceImpl;
 
@@ -101,7 +102,7 @@ public class UserController {
 		return userServ.addUserFile(filee, iduser);
 	}
 	
-	@GetMapping(value = "/getAllUsers")
+	@GetMapping(value = "/getAllUsers") 
 	public List<User> getAllUsers()
 	{
 		return userServ.getAllUsers();
@@ -112,4 +113,11 @@ public class UserController {
 	{
 		return userServ.uploadUserFilee(file, idUser);
 	}
+	
+	@GetMapping(value = "getPostByIdUser/{iduser}")
+	public List<Post> getPostByIdUser(@PathVariable("iduser")  Long iduser)
+	{
+		return userServ.getPostByIdUser(iduser);
+	}
+	
 }

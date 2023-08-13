@@ -1,7 +1,5 @@
 package tn.mySpringBootProject.spring.entities;
 
-
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -41,6 +39,5 @@ public class Post implements Serializable{
 	@JsonIgnore
 	@ManyToOne
 	private User userp;
-
 	
 }
